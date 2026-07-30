@@ -70,6 +70,8 @@ jobs:
         run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
 
       - name: Run export
+        env:
+          KOBWEB_EXPORT_NUM_THREADS: max
         run: |
           cd kobweb-site/site
           ../../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
