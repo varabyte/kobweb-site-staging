@@ -21,10 +21,12 @@ jobs:
       run:
         shell: bash
 
-    env:
-      KOBWEB_CLI_VERSION: 0.9.21
-
     steps:
+      - name: Fetch latest Kobweb CLI version
+        run: |
+          VERSION=$(curl -sSL https://raw.githubusercontent.com/varabyte/data/refs/heads/main/kobweb/cli-version.txt | xargs)
+          echo "KOBWEB_CLI_VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Clone kobweb-site dev branch
         run: |
           git clone --depth=1 --branch dev https://github.com/varabyte/kobweb-site.git
